@@ -1,16 +1,10 @@
 
 
 export default {
-    hasRequest(state) {
-        console.log('==========================')
-        console.log(
-            state.requests
-        )
-        console.log('==========================')
-
-        return state.requests && state.requests.length > 0
+    hasRequest(_state, getters) {
+        return getters.requests && getters.requests.length > 0
     },
-    requests(state) {
-        return state.requests
+    requests(state, _getters, _rootState, rootGetters) {
+        return state.requests.filter(req => req.coachId === rootGetters.userId)
     }
 }

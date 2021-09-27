@@ -6,10 +6,6 @@ export default {
             email: request.email,
             message: request.message
         }
-        console.log('*************')
-        console.log(newRequest)
-        console.log('*************')
-
         context.commit('requests', newRequest)
     }
 }

@@ -4,7 +4,6 @@
       <header>
         <h2>Recieve request</h2>
         <ul v-if="hasRequest">
-          <p>this is test</p>
           <request-item
             v-for="req in receivedRequests"
             :key="req.id"
@@ -24,8 +23,6 @@ export default {
   components: { RequestItem },
   computed: {
     hasRequest() {
-      console.log('%%%%%%%%%%%%%%%%%%%');
-      // console.log(this.$store.getters['requests/hasRequest'])
       return this.$store.getters['requests/hasRequest'];
     },
     receivedRequests() {
