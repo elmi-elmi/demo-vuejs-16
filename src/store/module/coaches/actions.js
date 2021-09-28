@@ -22,7 +22,10 @@ export default {
         context.commit('registerCoach', { ...dataForm, id: coachId })
     },
 
-    async loadCoaches(context) {
+    async loadCoaches(context, payload) {
+        if (!context.getters.shouldUpdate && !payload.forceRefresh) {
+            return
+        }
         const response = await fetch(`https://vue-http-demo-ccafc-default-rtdb.firebaseio.com/coachs.json`)
         const responsData = await response.json();
         if (!response) {
@@ -44,6 +47,7 @@ export default {
         }
         console.log(coaches)
 
-        context.commit('setCoaches', coaches)
+        context.commit('setCoaches', coaches);
+        context.commit('setFetchTimestamp')
     }
 }
